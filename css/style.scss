@@ -1,0 +1,100 @@
+* {
+  box-sizing: border-box;
+  font-size: 10px;
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  /*background-color: black;*/
+  /*height: 100%;*/
+}
+
+.container {
+  font-size: 0;
+}
+
+#skybox {
+  background-color: rgba(0, 150, 255);
+  height: 50vh;
+}
+
+#seascape {
+  border: 1px solid blue;
+  background: rgb(49,206,234); /* Old browsers */
+  background: -moz-linear-gradient(top, rgba(49,206,234,1) 0%, rgba(0,0,0,1) 1%); /* FF3.6-15 */
+  background: -webkit-linear-gradient(top, rgba(49,206,234,1) 0%, rgba(0,0,0,1) 1%); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to bottom, rgba(49,206,234,1) 0%, rgba(0,0,0,1) 1%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#31ceea', endColorstr='#000000',GradientType=0 ); /* IE6-9 */
+
+}
+
+#sideScale {
+  height: 100vh;
+  width: 10vw;
+  /*border: 1px solid red;*/
+  display: inline-block;
+  /*overflow: hidden;*/
+  position: fixed;
+}
+
+.counter {
+  border: 1px solid orange;
+  width: 10vw;
+  height: 15vh;
+  position: fixed;
+  font-size: 5em;
+  padding: 0;
+  margin: 0;
+  text-align: center;
+}
+
+.marker {
+  border-bottom: 1px solid yellow;
+  height: 10%;
+  font-size: 1em;
+}
+
+.leadMarker {
+  width: 11vw;
+  border-top: 1px solid red;
+}
+
+.intMarker {
+  border-bottom: 1px solid orange;
+  /*height: 10px;*/
+}
+
+  .intMarker #depthGauge {
+    font-size: 1em;
+    color: rgba(255, 180, 0, 0.8);
+    position: absolute;
+    margin-top: 7vh;
+    margin-left: 110%;
+    /*border: 1px solid red;*/
+    text-align: left;
+    white-space:nowrap;
+    max-width: 50vw;
+  }
+
+.zone {
+  width: 100%;
+  border-top: 1px solid gainsboro;
+  position: absolute;
+  color: gainsboro;
+  text-align: center;
+  font-size: 40px;
+  /*background-color: yellow;*/
+  height: 60px;
+}
+  .zone span {
+
+  }
+
+
+.pointContain {
+  /*height: 100%;*/
+  width: 10vw; 
+  border: 1px solid pink;
+  float: right;
+}
