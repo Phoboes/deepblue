@@ -19,39 +19,13 @@ var setseascapeScale = function(){
   $seascape.style.height = app.winScale.meterLength * 11050 + "px";
 }
 
-window.onload = function( e ){
-  $seascape = document.getElementById('seascape');
-  $seascapeHeight = $seascape.offsetHeight;
-  $sideScale = document.getElementById( 'sideScale' );
-  setsideScale();
-  setseascapeScale();
-
-
-  app.data.oceanicZones.forEach( function( zone ){
-    var $zone = document.createElement('div');
-    // debugger
-    $zone.className = "zone";
-    $zone.innerHTML = zone.name;
-
-    zonePercentFromTop = ( ( zone.start / ( parseInt( $seascape.style.height ) / app.winScale.meterLength ) ) * 100  ) / 100 * parseInt( $seascape.style.height );
-    console.log( zonePercentFromTop );
-    // debugger
-    $zone.style.marginTop = parseInt( zonePercentFromTop ) + 'px';
-
-
-    $seascape.appendChild( $zone );
-
-    console.log( zone.name )
-    console.log( zone.start )
-
-  } );
-
+var setFactoids = function(){
   for( data in app.data.facts ){
     console.warn( data )
     for( factset in app.data.facts[data] ){
       // debugger
-      console.log( factset + ": " + app.data.facts[data][factset] );
-      console.log('')
+      // console.log( factset + ": " + app.data.facts[data][factset] );
+      // console.log('')
 
       var $factoid = document.createElement('div');
       $factoid.className = "factoid";
@@ -63,15 +37,52 @@ window.onload = function( e ){
       $seascape.appendChild( $factoid );
 
     }
-  };
+  }
+};
+
+var setZones = function(){
+  app.data.oceanicZones.forEach( function( zone ){
+    var $zone = document.createElement('div');
+    // debugger
+    $zone.className = "zone";
+    $zone.innerHTML = zone.name;
+    zonePercentFromTop = ( ( zone.start / ( parseInt( $seascape.style.height ) / app.winScale.meterLength ) ) * 100  ) / 100 * parseInt( $seascape.style.height );
+    console.log( zonePercentFromTop );
+    // debugger
+    $zone.style.marginTop = parseInt( zonePercentFromTop ) + 'px';
+    $seascape.appendChild( $zone );
+    // console.log( zone.name )
+    // console.log( zone.start )
+
+  } );
+}
 
 
+
+
+
+
+
+
+
+
+
+window.onload = function( e ){
+  $seascape = document.getElementById('seascape');
+  $seascapeHeight = $seascape.offsetHeight;
+  $sideScale = document.getElementById( 'sideScale' );
+  setsideScale();
+  setseascapeScale();
+  setFactoids();
+  setZones();
 };
 
 
 window.onresize = function(){
   setsideScale();
   setseascapeScale();
+  setFactoids();
+  setZones();
 }
 
 window.onscroll = function(){
@@ -79,5 +90,6 @@ window.onscroll = function(){
   var depth = Math.round( ( scrollY / app.winScale.meterLength ) * 10 ) / 10
   $depthCount.innerHTML = ( depth ) + " m";
   var pressure = depth * 1.457
-  console.log( (Math.round( pressure * 10 ) / 10).toFixed(2) );
+  // console.log( (Math.round( pressure * 10 ) / 10).toFixed(2) );
+  document.getElementById('pressureGauge').innerHTML = (Math.round( pressure * 10 ) / 10).toFixed(2) + " psi"
 }

@@ -76,6 +76,18 @@ body {
     max-width: 50vw;
   }
 
+  .intMarker #pressureGauge {
+    font-size: 0.3em;
+    color: rgba(200, 160, 0, 0.8);
+    position: absolute;
+    margin-top: 12vh;
+    margin-left: 110%;
+    /*border: 1px solid red;*/
+    text-align: left;
+    white-space:nowrap;
+    max-width: 50vw;
+  }
+
 .zone {
   width: 100%;
   border-top: 1px solid gainsboro;
