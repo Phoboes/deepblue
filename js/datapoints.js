@@ -40,7 +40,7 @@ app.data.oceanicZones = [
   app.data.facts = {};
 
   app.data.facts.humanAchievement = {
-    20: "For every 10 meters you descend, the volume of air in your body is halved. <br>Lungs compress to 1/3 their normal size. <br>Around now, a human with no equipment reaches neutral bouyancy.",
+    20: "For every 10 meters you descend, the volume of air in your body is halved. <br>Lungs compress to 1/3 their normal size.<br>Around now, a human with no equipment reaches neutral or negative bouyancy.",
     40: "The depth limit for recreational scuba divers.",
     102: "The deepest freedive without using fins.",
     332: "The deepest SCUBA dive ever achieved.",
@@ -53,9 +53,9 @@ app.data.oceanicZones = [
 
   app.data.facts.biology = {
     10: "Red light penetrates no deeper. Blood at this depth looks dark green.",
-    160: "Almost no sunlight penetrates this deep. Photosynthesis is no longer a viable survival strategy.",
+    160: "Almost no sunlight penetrates this deep.<br> Photosynthesis is no longer a viable survival strategy.",
     300: "Deepest recorded dive by a Bottlenose dolphin.",
-    990: "Many creatures are starting to depend on 'Marine Snow' (dead things falling in the water column) for food. Any trace light from the surface is gone.",
+    990: "Many creatures are starting to depend on 'Marine Snow' (dead things falling in the water column) for food.<br>Any trace light from the surface is gone.",
     2000: "The limits at which Sperm whales can dive.",
     2100: "The average depth where hydrothermal vents can be found.",
     3000: "The limits of the deepest diving mammal - The Cuvier's beaked whale."
@@ -65,7 +65,7 @@ app.data.oceanicZones = [
     45: "The deepest points of Sydney harbour - the deepest (and largest) natural harbour on Earth.",
     3688: "The average depth of all oceans.",
     8848: "The height of Everest.",
-    10210: "The total height (including underwater) of Mauna Kea. The tallest mountain on Earth."
+    10210: "The total height (including underwater) of Mauna Kea.<br>The tallest mountain on Earth."
   };
 
   app.data.facts.architecture = {

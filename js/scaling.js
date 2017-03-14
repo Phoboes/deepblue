@@ -4,6 +4,10 @@ app.winScale = {};
 app.winScale.$winHeight;
 app.winScale.$winWidth;
 
+// ----------------------------------------------------
+//    Used to kill off duplicate elements on rescale.
+// ----------------------------------------------------
+
 var removeElementsByClass = function (className){
     var elements = document.getElementsByClassName(className);
     while(elements.length > 0){
@@ -11,16 +15,23 @@ var removeElementsByClass = function (className){
     }
 };
 
+// ----------------------------------------------------
+// ------------------ Start setters -------------------
+// Set scales of all elements and distances, based on the user's viewport.
+
+
 var setCounters = function(){
   var $depthCount = document.getElementById('depthGauge');
+  // Our depth is calculated by distance from the top of our window, divided by the value of our calculated meter (then rounded).
   var depth = Math.round( ( scrollY / app.winScale.meterLength ) * 10 ) / 10
   $depthCount.innerHTML = ( depth ) + " m";
+  // 14.57 psi increase in pressure, per 10m.
   var pressure = depth * 1.457
-  // console.log( (Math.round( pressure * 10 ) / 10).toFixed(2) );
   document.getElementById('pressureGauge').innerHTML = (Math.round( pressure * 10 ) / 10).toFixed(2) + " psi"
-}
+};
 
 var setsideScale = function(){
+  $sideScale = document.getElementById( 'sideScale' );
   app.winScale.$winHeight = window.innerHeight;
   app.winScale.$winWidth = window.innerWidth;
   $sideScale.style.height  = app.winScale.$winHeight + 'px';
@@ -30,52 +41,43 @@ var setsideScale = function(){
 
 var setseascapeScale = function(){
   app.winScale.$winHeight = window.innerHeight;
+  // Set the window ocean depth based on our calculated value of a meter.
   $seascape.style.height = app.winScale.meterLength * 11050 + "px";
-}
+};
 
 var setFactoids = function(){
-
+  // Purge any existing factoids, otherwise resizing etc ends up in duplicate elements.
   removeElementsByClass( 'factoid' );
-
   for( data in app.data.facts ){
-    console.warn( data )
     for( factset in app.data.facts[data] ){
-      // debugger
-      // console.log( factset + ": " + app.data.facts[data][factset] );
-      // console.log('')
-
       var $factoid = document.createElement('div');
       $factoid.className = "factoid";
       $factoid.innerHTML = app.data.facts[data][factset];
-
-      zonePercentFromTop = ( ( parseInt( factset ) / ( parseInt( $seascape.style.height ) / app.winScale.meterLength ) ) * 100  ) / 100 * parseInt( $seascape.style.height );
+      // Calculate our offset from the top based on the meter value provided to our data points.
+      var zonePercentFromTop = ( ( parseInt( factset ) / ( parseInt( $seascape.style.height ) / app.winScale.meterLength ) ) * 100  ) / 100 * parseInt( $seascape.style.height );
       console.log( zonePercentFromTop );
       $factoid.style.marginTop = parseInt( zonePercentFromTop ) + 'px';
       $seascape.appendChild( $factoid );
-
     }
   }
 };
 
 var setZones = function(){
-
   removeElementsByClass( 'zone' );
-
   app.data.oceanicZones.forEach( function( zone ){
     var $zone = document.createElement('div');
-    // debugger
+
     $zone.className = "zone";
     $zone.innerHTML = zone.name;
     zonePercentFromTop = ( ( zone.start / ( parseInt( $seascape.style.height ) / app.winScale.meterLength ) ) * 100  ) / 100 * parseInt( $seascape.style.height );
     console.log( zonePercentFromTop );
-    // debugger
+
     $zone.style.marginTop = parseInt( zonePercentFromTop ) + 'px';
     $seascape.appendChild( $zone );
-    // console.log( zone.name )
-    // console.log( zone.start )
-
   } );
-}
+};
+
+// Mass function calls, to save me having to write out this cluster for every window change event.
 
 var setScales = function(){
   setsideScale();
@@ -83,25 +85,24 @@ var setScales = function(){
   setFactoids();
   setZones();
   setCounters();
-}
+};
 
 
+// --------------------End Setters---------------------
+// ----------------------------------------------------
 
 
 
 
 window.onload = function( e ){
   $seascape = document.getElementById('seascape');
-  $seascapeHeight = $seascape.offsetHeight;
-  $sideScale = document.getElementById( 'sideScale' );
   setScales();
 };
 
-
 window.onresize = function(){
   setScales();
-}
+};
 
 window.onscroll = function(){
   setScales();
-}
+};
