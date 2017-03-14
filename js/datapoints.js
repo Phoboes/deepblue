@@ -38,11 +38,11 @@ app.data.oceanicZones = [
   ];
 
   app.data.humanAchievement = {
-    20: "For every 10 meters you descend, the volume of air in your body is halved. Lungs compress to 1/3 their normal size. Around now, a human with no equipment reaches neutral bouyancy."
+    20: "For every 10 meters you descend, the volume of air in your body is halved. Lungs compress to 1/3 their normal size. Around now, a human with no equipment reaches neutral bouyancy.",
     40: "The depth limit for recreational scuba divers.",
     102: "The deepest freedive without using fins.",
     332: "The deepest SCUBA dive ever achieved.",
-    730: "Estimated maximum depth of US war submarines."
+    730: "Estimated maximum depth of US war submarines.",
     4000: "The deepest capacity at which Trawlers can operate.",
     10898: "The depth James Cameron reached in 2012.",
     10911: "The deepest diving point of the Trieste - the deepest humans have ever been."
@@ -54,7 +54,7 @@ app.data.oceanicZones = [
     300: "Deepest dive by a Bottlenose dolphin.",
     990: "Many creatures are starting to depend on 'Marine Snow' (dead things falling in the water column) for food.",
     2000: "The limits at which Sperm whales can dive.",
-    2100: "The average depth where hydrothermal vents can be found."
+    2100: "The average depth where hydrothermal vents can be found.",
     3000: "The limits of the deepest diving mammal - The Cuvier's beaked whale."
   };
 
@@ -66,8 +66,8 @@ app.data.oceanicZones = [
   };
 
   app.data.architecture = {
-    108: "The depth for the final resting place of the Kursk.",,
-    301: "The height of eiffel tower"
+    108: "The depth for the final resting place of the Kursk.",
+    301: "The height of eiffel tower",
     541: "The One World Trade Center.",
     828: "The tallest building on earth, the Burj Khalifa.",
     3810: "The depth for the final resting place of the titanic.",
