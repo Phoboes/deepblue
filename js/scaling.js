@@ -45,6 +45,27 @@ window.onload = function( e ){
     console.log( zone.start )
 
   } );
+
+  for( data in app.data.facts ){
+    console.warn( data )
+    for( factset in app.data.facts[data] ){
+      // debugger
+      console.log( factset + ": " + app.data.facts[data][factset] );
+      console.log('')
+
+      var $factoid = document.createElement('div');
+      $factoid.className = "factoid";
+      $factoid.innerHTML = app.data.facts[data][factset];
+
+      zonePercentFromTop = ( ( parseInt( factset ) / ( parseInt( $seascape.style.height ) / app.winScale.meterLength ) ) * 100  ) / 100 * parseInt( $seascape.style.height );
+      console.log( zonePercentFromTop );
+      $factoid.style.marginTop = parseInt( zonePercentFromTop ) + 'px';
+      $seascape.appendChild( $factoid );
+
+    }
+  };
+
+
 };
 
 
@@ -55,7 +76,7 @@ window.onresize = function(){
 
 window.onscroll = function(){
   var $depthCount = document.getElementById('depthGauge');
-  var depth = Math.round( ( scrollY / app.winScale.meterLength ) * 10 ) / 10 
+  var depth = Math.round( ( scrollY / app.winScale.meterLength ) * 10 ) / 10
   $depthCount.innerHTML = ( depth ) + " m";
   var pressure = depth * 1.457
   console.log( (Math.round( pressure * 10 ) / 10).toFixed(2) );
