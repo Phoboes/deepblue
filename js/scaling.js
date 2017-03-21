@@ -57,7 +57,7 @@ var setFactoids = function(){
       var zonePercentFromTop = ( ( parseInt( factset ) / ( parseInt( $seascape.style.height ) / app.winScale.meterLength ) ) * 100  ) / 100 * parseInt( $seascape.style.height );
       console.log( zonePercentFromTop );
       $factoid.style.marginTop = parseInt( zonePercentFromTop ) + 'px';
-      $seascape.appendChild( $factoid );
+      $seascapeGradient.appendChild( $factoid );
     }
   }
 };
@@ -73,7 +73,7 @@ var setZones = function(){
     console.log( zonePercentFromTop );
 
     $zone.style.marginTop = parseInt( zonePercentFromTop ) + 'px';
-    $seascape.appendChild( $zone );
+    $seascapeGradient.appendChild( $zone );
   } );
 };
 
@@ -96,6 +96,7 @@ var setScales = function(){
 
 window.onload = function( e ){
   $seascape = document.getElementById('seascape');
+  $seascapeGradient = document.getElementById('darkGradient')
   setScales();
 };
 
