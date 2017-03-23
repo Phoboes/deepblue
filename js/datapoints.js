@@ -1,6 +1,6 @@
 var app = app || {};
 app.data = {};
-
+app.data.scrollPoints = [];
 app.data.seafloor = 10994;
 
 app.data.oceanicZones = [
@@ -46,7 +46,7 @@ app.data.oceanicZones = [
     332: "The deepest SCUBA dive ever achieved.",
     730: "Estimated maximum dive depth of Seawolf class submarines.",
     // Check me.
-    4000: "The deepest capacity at which Trawlers can operate.",
+    // 4000: "The deepest capacity at which Trawlers can operate.",
     10898: "The depth James Cameron reached in 2012.",
     10911: "The deepest diving point of the Trieste - the deepest humans have ever been."
   };

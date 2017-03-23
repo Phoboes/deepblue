@@ -15,6 +15,18 @@ var removeElementsByClass = function (className){
     }
 };
 
+var getUniqueValues = function( arr ){
+  var storedArr = [];
+  for (var i = arr.length - 1; i >= 0; i--) {
+    if( storedArr.indexOf( arr[i] ) === -1 ){
+      storedArr.push( arr[i] );
+    }
+  }
+  console.log( storedArr.sort(function (a, b) {  return a - b;  }) )
+  return storedArr.sort(function (a, b) {  return a - b;  });
+}
+
+
 // ----------------------------------------------------
 // ------------------ Start setters -------------------
 // Set scales of all elements and distances, based on the user's viewport.
@@ -57,6 +69,7 @@ var setFactoids = function(){
       var zonePercentFromTop = ( ( parseInt( factset ) / ( parseInt( $seascape.style.height ) / app.winScale.meterLength ) ) * 100  ) / 100 * parseInt( $seascape.style.height );
       console.log( zonePercentFromTop );
       $factoid.style.marginTop = parseInt( zonePercentFromTop ) + 'px';
+      app.data.scrollPoints.push( zonePercentFromTop );
       $seascapeGradient.appendChild( $factoid );
     }
   }
@@ -73,6 +86,7 @@ var setZones = function(){
     console.log( zonePercentFromTop );
 
     $zone.style.marginTop = parseInt( zonePercentFromTop ) + 'px';
+    app.data.scrollPoints.push( zonePercentFromTop );
     $seascapeGradient.appendChild( $zone );
   } );
 };
@@ -80,11 +94,13 @@ var setZones = function(){
 // Mass function calls, to save me having to write out this cluster for every window change event.
 
 var setScales = function(){
+  app.data.scrollPoints = [];
   setsideScale();
   setseascapeScale();
   setFactoids();
   setZones();
   setCounters();
+  app.data.scrollPoints = getUniqueValues( app.data.scrollPoints );
 };
 
 
@@ -105,5 +121,5 @@ window.onresize = function(){
 };
 
 window.onscroll = function(){
-  setScales();
+  setCounters();
 };
