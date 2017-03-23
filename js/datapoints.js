@@ -69,7 +69,7 @@ app.data.oceanicZones = [
   };
 
   app.data.facts.architecture = {
-    108: "The depth for the final resting place of the Kursk.",
+    108: "The final resting depth of the Kursk.",
     301: "The height of Eiffel tower",
     541: "The One World Trade Center.",
     828: "The tallest building on earth, the Burj Khalifa.",
