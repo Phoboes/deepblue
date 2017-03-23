@@ -46,7 +46,7 @@ app.data.oceanicZones = [
     332: "The deepest SCUBA dive ever achieved.",
     730: "Estimated maximum dive depth of Seawolf class submarines.",
     // Check me.
-    4000: "The deepest capacity at which Trawlers can operate.",
+    // 4000: "The deepest capacity at which Trawlers can operate.",
     10898: "The depth James Cameron reached in 2012.",
     10911: "The deepest diving point of the Trieste - the deepest humans have ever been."
   };
@@ -69,7 +69,7 @@ app.data.oceanicZones = [
   };
 
   app.data.facts.architecture = {
-    108: "The depth for the final resting place of the Kursk.",
+    108: "The final resting depth of the Kursk.",
     301: "The height of Eiffel tower",
     541: "The One World Trade Center.",
     828: "The tallest building on earth, the Burj Khalifa.",
