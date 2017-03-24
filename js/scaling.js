@@ -108,6 +108,7 @@ var setScales = function(){
 };
 
 var setPoints = function( arr ){
+  removeElementsByClass( 'point' );
   var $pointWrap = document.getElementById( 'pointWrap' );
   for (var i = arr.length - 1; i >= 0; i--) {
     var $point = document.createElement('div');
