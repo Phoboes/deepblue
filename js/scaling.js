@@ -134,15 +134,16 @@ var spacePoints = function(){
 };
 
 var clickNav = function(){
-
   windowPos = window.scrollY;
   var dataPointLength = app.data.scrollPoints.length
   if( this.id === 'up' ){
     for (var i = dataPointLength - 1; i >= 0; i--) {
-      if( windowPos > Math.round( app.data.scrollPoints[i] ) ){
-        // debugger
-        window.scrollTo( 0, app.data.scrollPoints[ i ] );
+      // If we're sitting between data points, navigate to the nearest point with a lower Y index and stop the loop.
+      var roundedPos = Math.round( app.data.scrollPoints[i] );
+      if( windowPos > roundedPos ){
+        window.scrollTo( 0, roundedPos );
         break
+        // If we're already on a point, navigate to the one before.
       } else if ( windowPos === Math.round( app.data.scrollPoints[i] ) ){
         window.scrollTo( 0, app.data.scrollPoints[ i - 1 ] );
         break;
@@ -151,10 +152,17 @@ var clickNav = function(){
     console.log('up')
   } else {
     for (var i = 0; i <= dataPointLength - 1; i++) {
-      if( windowPos <= app.data.scrollPoints[i] && windowPos < app.data.scrollPoints[ dataPointLength - 1 ]){
-        console.log()
-        window.scrollTo( 0, app.data.scrollPoints[ i + 1 ] );
+      console.log(i)
+      var roundedPos =Math.round( app.data.scrollPoints[i] );
+      // debugger
+      if( windowPos < Math.round( app.data.scrollPoints[i] ) ){
+        window.scrollTo( 0, roundedPos );
+        // debugger
         break
+      } else if ( windowPos === Math.round( app.data.scrollPoints[i] ) ){
+        // debugger
+        window.scrollTo( 0, app.data.scrollPoints[ i + 1 ] );
+        break;
       }
     };
     console.log('down')
