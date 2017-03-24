@@ -22,7 +22,7 @@ var getUniqueValues = function( arr ){
       storedArr.push( arr[i] );
     }
   }
-  console.log( storedArr.sort(function (a, b) {  return a - b;  }) )
+  // console.log( storedArr.sort(function (a, b) {  return a - b;  }) )
   return storedArr.sort(function (a, b) {  return a - b;  });
 }
 
@@ -67,7 +67,7 @@ var setFactoids = function(){
       $factoid.innerHTML = app.data.facts[data][factset];
       // Calculate our offset from the top based on the meter value provided to our data points.
       var zonePercentFromTop = ( ( parseInt( factset ) / ( parseInt( $seascape.style.height ) / app.winScale.meterLength ) ) * 100  ) / 100 * parseInt( $seascape.style.height );
-      console.log( zonePercentFromTop );
+      // console.log( zonePercentFromTop );
       $factoid.style.marginTop = parseInt( zonePercentFromTop ) + 'px';
       app.data.scrollPoints.push( zonePercentFromTop );
       $seascapeGradient.appendChild( $factoid );
@@ -83,7 +83,7 @@ var setZones = function(){
     $zone.className = "zone";
     $zone.innerHTML = zone.name;
     zonePercentFromTop = ( ( zone.start / ( parseInt( $seascape.style.height ) / app.winScale.meterLength ) ) * 100  ) / 100 * parseInt( $seascape.style.height );
-    console.log( zonePercentFromTop );
+    // console.log( zonePercentFromTop );
 
     $zone.style.marginTop = parseInt( zonePercentFromTop ) + 'px';
     app.data.scrollPoints.push( zonePercentFromTop );
@@ -101,7 +101,66 @@ var setScales = function(){
   setZones();
   setCounters();
   app.data.scrollPoints = getUniqueValues( app.data.scrollPoints );
+
+  setPoints( app.data.scrollPoints );
+  spacePoints();
+
 };
+
+var setPoints = function( arr ){
+  var $pointWrap = document.getElementById( 'pointWrap' );
+  for (var i = arr.length - 1; i >= 0; i--) {
+    var $point = document.createElement('div');
+    $point.className = "point";
+    $pointWrap.appendChild( $point );
+  };
+
+};
+
+var spacePoints = function(){
+  var $pointWrap = document.getElementById('pointWrap');
+  var $wrapHeight = parseInt( window.getComputedStyle( document.getElementById('pointWrap') ).height );
+  var $wrapWidth = parseInt( window.getComputedStyle( document.getElementById('pointWrap') ).width );
+  var navPoints = document.getElementsByClassName('point')
+  var pointCount = navPoints.length;
+  var evenSpacing = $wrapHeight / ( pointCount + 1 );
+  var pointSize = $wrapWidth / 30;
+  for (var i = navPoints.length - 1; i >= 0; i--) {
+    navPoints[i].style.height = pointSize + 'px';
+    navPoints[i].style.width = pointSize + 'px';
+    navPoints[i].style.marginTop = (evenSpacing * i + evenSpacing ) + 'px';
+    navPoints[i].style.marginLeft = ( ( $wrapWidth / 2 ) - pointSize ) + 'px';
+  };
+};
+
+var clickNav = function(){
+
+  windowPos = window.scrollY;
+  var dataPointLength = app.data.scrollPoints.length
+  if( this.id === 'up' ){
+    for (var i = dataPointLength - 1; i >= 0; i--) {
+      if( windowPos > Math.round( app.data.scrollPoints[i] ) ){
+        // debugger
+        window.scrollTo( 0, app.data.scrollPoints[ i ] );
+        break
+      } else if ( windowPos === Math.round( app.data.scrollPoints[i] ) ){
+        window.scrollTo( 0, app.data.scrollPoints[ i - 1 ] );
+        break;
+      }
+    };
+    console.log('up')
+  } else {
+    for (var i = 0; i <= dataPointLength - 1; i++) {
+      if( windowPos <= app.data.scrollPoints[i] && windowPos < app.data.scrollPoints[ dataPointLength - 1 ]){
+        console.log()
+        window.scrollTo( 0, app.data.scrollPoints[ i + 1 ] );
+        break
+      }
+    };
+    console.log('down')
+  }
+};
+
 
 
 // --------------------End Setters---------------------
@@ -114,6 +173,11 @@ window.onload = function( e ){
   $seascape = document.getElementById('seascape');
   $seascapeGradient = document.getElementById('darkGradient')
   setScales();
+
+var $arrows = document.getElementsByClassName('arrow');
+  for (var i = $arrows.length - 1; i >= 0; i--) {
+    $arrows[i].onclick = clickNav;
+  };
 };
 
 window.onresize = function(){
