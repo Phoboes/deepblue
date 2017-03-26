@@ -101,10 +101,8 @@ var setScales = function(){
   setZones();
   setCounters();
   app.data.scrollPoints = getUniqueValues( app.data.scrollPoints );
-
   setPoints( app.data.scrollPoints );
   spacePoints();
-
 };
 
 var setPoints = function( arr ){
@@ -146,31 +144,64 @@ var clickNav = function(){
         break
         // If we're already on a point, navigate to the one before.
       } else if ( windowPos === Math.round( app.data.scrollPoints[i] ) ){
-        window.scrollTo( 0, app.data.scrollPoints[ i - 1 ] );
+        window.scroll( 0, app.data.scrollPoints[ i - 1 ] );
         break;
       }
+    scrollRamp( windowPos, app.data.scrollPoints[i] );
+
     };
-    console.log('up')
+    // console.log('up')
   } else {
     for (var i = 0; i <= dataPointLength - 1; i++) {
-      console.log(i)
-      var roundedPos =Math.round( app.data.scrollPoints[i] );
+      // console.log(i)
+      var roundedPos = Math.round( app.data.scrollPoints[i] );
       // debugger
       if( windowPos < Math.round( app.data.scrollPoints[i] ) ){
-        window.scrollTo( 0, roundedPos );
         // debugger
+        window.scrollTo( 0, roundedPos );
         break
-      } else if ( windowPos === Math.round( app.data.scrollPoints[i] ) ){
+      } else if ( windowPos === Math.round( app.data.scrollPoints[i] ) && app.data.scrollPoints[i] < app.data.scrollPoints[i].length ){
         // debugger
         window.scrollTo( 0, app.data.scrollPoints[ i + 1 ] );
         break;
       }
+        scrollRamp( windowPos, app.data.scrollPoints[i] );
     };
-    console.log('down')
+    // console.log('down')
   }
 };
 
+// Error in proccing from Challenger deep ^
+var scrollRamp = function(start, end){
+  var distance = ( start - end );
+  distance >= 0 ? console.log("Pos") : console.log("Neg")
 
+  // Eval direction
+
+  // External speed limit = 1/4 of travel distance
+    // => Disable scroll buttons during travel 
+  // External counter
+
+    // Function w ternary
+    //     ______
+    //    /      \
+
+    // Ramp phase => If below top speed, increment counter
+      // yPos += counter
+
+      // While @ top speed:
+        // => ypos += counter
+
+      // At ramp down phase:
+        // => ypos += counter
+        // counter -= ramp
+
+    // If posY != datapoint => nav @ velocity
+    // Else break 
+
+
+
+};
 
 // --------------------End Setters---------------------
 // ----------------------------------------------------
