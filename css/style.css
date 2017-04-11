@@ -188,18 +188,3 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#001e5799', e
   text-align: center;
   position: absolute;
 }
-
-
-/*div.equidistant{
-  width:100%;
-  display: table;
-}
-
-div.equidistant ul{
-  display: table-row;
-}
-
-div.equidistant ul li{
-  display: table-cell;
-  text-align: center;
-}*/

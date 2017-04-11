@@ -89,8 +89,9 @@ app.data.oceanicZones = [
   app.data.facts.architecture = {
     108: "The final resting depth of the Kursk.",
     301: "The height of Eiffel tower",
-    541: "The height of thr One World Trade Center.",
+    541: "The height of the One World Trade Center.",
     828: "The tallest building on earth, the Burj Khalifa.",
+    2450: "The Perdido, the deepest floating oil rig on Earth.",
     3810: "The depth at which the Titanic rests.",
     4900: "The deepest successful salvage operation - retrieving the black box of South African Airways Flight 295.",
     5762: "The deepest known wreck, The Rio Grande."

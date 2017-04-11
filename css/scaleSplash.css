@@ -1,0 +1,151 @@
+#human {
+  width: 100%;
+/*  border: 1px solid red;
+*/  margin: auto;
+  height: 80%;
+  /*width: 100%;*/
+  position: relative;
+  margin: 1% auto;
+}
+
+#humanOutline path {
+  opacity: 0;
+  stroke-dasharray: 5600;
+  stroke-dashoffset: 5600;
+  animation: outlineHuman 2.5s linear forwards;
+  fill: rgba( 0, 0, 0, 0 );
+}
+
+@keyframes outlineHuman {
+    0% {
+      /*opacity: 0;*/
+      stroke-dashoffset: 5600;
+      fill: rgba( 0, 0, 0, 0 );
+    }
+    20% {
+      opacity: 100;
+      stroke-dashoffset: 4500;
+      fill: rgba( 0, 0, 0, 0 );
+    }
+    40% {
+      stroke-dashoffset: 3500
+      fill: rgba( 0, 0, 0, 0 );
+    }
+    60% {
+      stroke-dashoffset: 2500
+      fill: rgba( 0, 0, 0, 0 );
+    }
+    80% {
+      stroke-dashoffset: 1100;
+      fill: rgba( 0, 0, 0, 0 );
+    }
+
+    85% {
+      stroke-dashoffset: 0;
+      fill: rgba( 0, 0, 0, 0 );
+    }
+
+    90% {
+      stroke-dashoffset: 0;
+      fill: rgba( 0, 0, 0, 0.2 );
+    }
+
+    95% {
+      stroke-dashoffset: 0;
+      fill: rgba( 0, 0, 0, 0.6 );
+    }
+
+    100% {
+      opacity: 1;
+      stroke-dashoffset: 0;
+      fill: rgba( 0, 0, 0, 1 );
+    }
+}
+
+/* 2m scale */
+#scaling polyline {
+  opacity: 0;
+  stroke-dasharray: 1500;
+  stroke-dashoffset: 1500;
+  animation: makeScale 2s linear forwards;
+}
+
+@keyframes makeScale {
+  0% {
+    stroke-dashoffset: 1500;
+  }
+
+  50% {
+    stroke-dashoffset: 750
+  }
+
+  100% {
+    stroke-dashoffset: 0;
+    opacity: 1;
+  }
+}
+
+#scaling g path {
+  /*opacity: 0;*/
+  stroke-dasharray: 400;
+  stroke-dashoffset: 400;
+  animation: scaleText 1.5s linear forwards;
+  -webkit-animation-delay: 1.5s; /* Safari 4.0 - 8.0 */
+  animation-delay: 1.5s;
+}
+
+@keyframes scaleText {
+  0% {
+    stroke-dashoffset: 400;
+  }
+
+  50% {
+    stroke-dashoffset: 200
+  }
+
+  100% {
+    stroke-dashoffset: 0;
+    opacity: 1;
+    /*fill: rgba( 0, 0, 0, 1 );*/
+  }
+}
+
+.whitespaceLander {
+  opacity: 0;
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  background-color: rgb( 255, 255, 255 );
+  top: 0;
+  z-index: 6;
+  -webkit-animation-delay: 5s; /* Safari 4.0 - 8.0 */
+  animation-delay: 8s;
+  animation: fadeOut 8s linear;
+}
+
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+  .splashWrap {
+    height: 100%;
+    margin: auto;
+    width: 30%;
+/*    border: 1px solid red;
+*/  }
+
+.splashButton {
+  border: 1px solid black;
+  width: 100%;
+  height: 10%;
+  margin: auto;
+}

@@ -83,7 +83,6 @@ var setZones = function(){
     $zone.className = "zone";
     $zone.innerHTML = zone.name;
     zonePercentFromTop = ( ( zone.start / ( parseInt( $seascape.style.height ) / app.winScale.meterLength ) ) * 100  ) / 100 * parseInt( $seascape.style.height );
-    // console.log( zonePercentFromTop );
 
     $zone.style.marginTop = parseInt( zonePercentFromTop ) + 'px';
     app.data.scrollPoints.push( zonePercentFromTop );
@@ -112,7 +111,7 @@ var setPoints = function( arr ){
     var $point = document.createElement('div');
     $point.className = "point";
     $pointWrap.appendChild( $point );
-  };
+  }
 
 };
 
@@ -132,92 +131,124 @@ var spacePoints = function(){
   };
 };
 
+//http://stackoverflow.com/questions/12199363/scrollto-with-animation
+// first add raf shim
+// http://www.paulirish.com/2011/requestanimationframe-for-smart-animating/
+window.requestAnimFrame = (function(){
+  return  window.requestAnimationFrame       ||
+          window.webkitRequestAnimationFrame ||
+          window.mozRequestAnimationFrame    ||
+          function( callback ){
+            window.setTimeout(callback, 1000 / 60);
+          };
+})();
+
+// main function
+function scrollToY(scrollTargetY, speed, easing) {
+    // scrollTargetY: the target scrollY property of the window
+    // speed: time in pixels per second
+    // easing: easing equation to use
+
+    var scrollY = window.scrollY,
+        scrollTargetY = scrollTargetY || 0,
+        speed = speed || 2000,
+        easing = easing || 'easeOutSine',
+        currentTime = 0;
+
+    // min time .1, max time .8 seconds
+    var time = Math.max(.1, Math.min(Math.abs(scrollY - scrollTargetY) / speed, .8));
+
+    // easing equations from https://github.com/danro/easing-js/blob/master/easing.js
+    var PI_D2 = Math.PI / 2,
+        easingEquations = {
+            easeOutSine: function (pos) {
+                return Math.sin(pos * (Math.PI / 2));
+            },
+            easeInOutSine: function (pos) {
+                return (-0.5 * (Math.cos(Math.PI * pos) - 1));
+            },
+            easeInOutQuint: function (pos) {
+                if ((pos /= 0.5) < 1) {
+                    return 0.5 * Math.pow(pos, 5);
+                }
+                return 0.5 * (Math.pow((pos - 2), 5) + 2);
+            }
+        };
+
+    // add animation loop
+    function tick() {
+        currentTime += 1 / 60;
+
+        var p = currentTime / time;
+        var t = easingEquations[easing](p);
+
+        if (p < 1) {
+            requestAnimFrame(tick);
+
+            window.scrollTo(0, scrollY + ((scrollTargetY - scrollY) * t));
+        } else {
+            console.log('scroll done');
+            window.scrollTo(0, scrollTargetY);
+        }
+    }
+
+    // call it once to get started
+    tick();
+}
+
+// scroll it!
+scrollToY(0, 1500, 'easeInOutQuint');
+
 var clickNav = function(){
   windowPos = window.scrollY;
-  var dataPointLength = app.data.scrollPoints.length
+  var dataPointLength = app.data.scrollPoints.length;
+  var targetPoint = 0;
   if( this.id === 'up' ){
     for (var i = dataPointLength - 1; i >= 0; i--) {
       // If we're sitting between data points, navigate to the nearest point with a lower Y index and stop the loop.
       var roundedPos = Math.round( app.data.scrollPoints[i] );
       if( windowPos > roundedPos ){
-        window.scrollTo( 0, roundedPos );
+        targetPoint = roundedPos;
+        // window.scrollTo( 0, targetPoint );
+        scrollToY( roundedPos );
         break
         // If we're already on a point, navigate to the one before.
       } else if ( windowPos === Math.round( app.data.scrollPoints[i] ) ){
-        window.scroll( 0, app.data.scrollPoints[ i - 1 ] );
+        targetPoint = app.data.scrollPoints[ i - 1 ];
+        // window.scroll( 0, targetPoint );
+        // controller.scrollTo( { y: targetPoint } );
+        scrollToY( targetPoint );
         break;
       }
-    scrollRamp( windowPos, app.data.scrollPoints[i] );
-
     };
-    // console.log('up')
   } else {
     for (var i = 0; i <= dataPointLength - 1; i++) {
-      // console.log(i)
       var roundedPos = Math.round( app.data.scrollPoints[i] );
-      // debugger
       if( windowPos < Math.round( app.data.scrollPoints[i] ) ){
         // debugger
-        window.scrollTo( 0, roundedPos );
+        scrollToY( roundedPos );
         break
       } else if ( windowPos === Math.round( app.data.scrollPoints[i] ) && app.data.scrollPoints[i] < app.data.scrollPoints[i].length ){
         // debugger
-        window.scrollTo( 0, app.data.scrollPoints[ i + 1 ] );
+        targetPoint = app.data.scrollPoints[ i + 1 ];
+        scrollToY( targetPoint );
         break;
       }
-        scrollRamp( windowPos, app.data.scrollPoints[i] );
     };
-    // console.log('down')
   }
-};
-
-// Error in proccing from Challenger deep ^
-var scrollRamp = function(start, end){
-  var distance = ( start - end );
-  distance >= 0 ? console.log("Pos") : console.log("Neg")
-
-  // Eval direction
-
-  // External speed limit = 1/4 of travel distance
-    // => Disable scroll buttons during travel 
-  // External counter
-
-    // Function w ternary
-    //     ______
-    //    /      \
-
-    // Ramp phase => If below top speed, increment counter
-      // yPos += counter
-
-      // While @ top speed:
-        // => ypos += counter
-
-      // At ramp down phase:
-        // => ypos += counter
-        // counter -= ramp
-
-    // If posY != datapoint => nav @ velocity
-    // Else break 
-
-
-
 };
 
 // --------------------End Setters---------------------
 // ----------------------------------------------------
 
-
-
-
 window.onload = function( e ){
   $seascape = document.getElementById('seascape');
-  $seascapeGradient = document.getElementById('darkGradient')
+  $seascapeGradient = document.getElementById('darkGradient');
   setScales();
-
 var $arrows = document.getElementsByClassName('arrow');
   for (var i = $arrows.length - 1; i >= 0; i--) {
     $arrows[i].onclick = clickNav;
-  };
+  }
 };
 
 window.onresize = function(){
