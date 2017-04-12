@@ -83,6 +83,7 @@ var setZones = function(){
     $zone.className = "zone";
     $zone.innerHTML = zone.name;
     zonePercentFromTop = ( ( zone.start / ( parseInt( $seascape.style.height ) / app.winScale.meterLength ) ) * 100  ) / 100 * parseInt( $seascape.style.height );
+    // console.log( zonePercentFromTop );
 
     $zone.style.marginTop = parseInt( zonePercentFromTop ) + 'px';
     app.data.scrollPoints.push( zonePercentFromTop );
@@ -131,7 +132,6 @@ var spacePoints = function(){
   };
 };
 
-//http://stackoverflow.com/questions/12199363/scrollto-with-animation
 // first add raf shim
 // http://www.paulirish.com/2011/requestanimationframe-for-smart-animating/
 window.requestAnimFrame = (function(){
@@ -196,7 +196,7 @@ function scrollToY(scrollTargetY, speed, easing) {
     tick();
 }
 
-// scroll it!
+// scroll
 scrollToY(0, 1500, 'easeInOutQuint');
 
 var clickNav = function(){
@@ -211,7 +211,7 @@ var clickNav = function(){
         targetPoint = roundedPos;
         // window.scrollTo( 0, targetPoint );
         scrollToY( roundedPos );
-        break
+        break;
         // If we're already on a point, navigate to the one before.
       } else if ( windowPos === Math.round( app.data.scrollPoints[i] ) ){
         targetPoint = app.data.scrollPoints[ i - 1 ];
@@ -220,18 +220,24 @@ var clickNav = function(){
         scrollToY( targetPoint );
         break;
       }
-    };
+    }
+    // console.log('up')
+    // scrollRamp( windowPos, targetPoint );
   } else {
     for (var i = 0; i <= dataPointLength - 1; i++) {
+      // console.log(i)
       var roundedPos = Math.round( app.data.scrollPoints[i] );
+      // debugger
       if( windowPos < Math.round( app.data.scrollPoints[i] ) ){
         // debugger
+        // window.scrollTo( 0, roundedPos );
         scrollToY( roundedPos );
         break
       } else if ( windowPos === Math.round( app.data.scrollPoints[i] ) && app.data.scrollPoints[i] < app.data.scrollPoints[i].length ){
         // debugger
         targetPoint = app.data.scrollPoints[ i + 1 ];
-        scrollToY( targetPoint );
+        // window.scrollTo( 0, targetPoint );
+        controller.scrollTo( { y: targetPoint } );
         break;
       }
     };
@@ -241,14 +247,39 @@ var clickNav = function(){
 // --------------------End Setters---------------------
 // ----------------------------------------------------
 
+var fadeSplashPage = function(){
+  $splashDiv = document.getElementsByClassName('whitespaceLander')[0];
+
+  $svg = document.getElementById("human");
+  $svgText = document.querySelector('#scaling g');
+  $svgScale = document.querySelector('#scaling');
+
+  $svgScale.classList.add('removeScale');
+  $svgText.classList.add('removeScaleText');
+  $splashDiv.classList.add('triggerFade');
+  setTimeout( function(){
+    // var elem = document.getElementsByClassName(".container");
+    $splashDiv.parentNode.removeChild( $splashDiv );
+  }, 2900 )
+
+  $svg.style.height = app.winScale.meterLength * 2;
+  $svg.style.bottom = 31+"%";
+};
+
+
 window.onload = function( e ){
   $seascape = document.getElementById('seascape');
   $seascapeGradient = document.getElementById('darkGradient');
   setScales();
+
 var $arrows = document.getElementsByClassName('arrow');
   for (var i = $arrows.length - 1; i >= 0; i--) {
     $arrows[i].onclick = clickNav;
   }
+
+
+  var $splashButton = document.getElementById('splashButton');
+  $splashButton.onclick = fadeSplashPage;
 };
 
 window.onresize = function(){
