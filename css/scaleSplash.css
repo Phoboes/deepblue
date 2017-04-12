@@ -1,15 +1,14 @@
 #human {
   width: 100%;
-  margin: auto;
-  height: 100%;
+  height: 95%;
   /*width: 100%;*/
   position: absolute;
-  bottom: -1%;
+  bottom: 0%;
   left: 0;
-  margin: 1% auto;
+  /*margin: 1% auto;*/
   -webkit-transition: height, 2s;
   -o-transition: height, 2s;
-  transition: height 2s, bottom 2s;
+  transition: height 2s, bottom 2s, left 5s;
 }
 
 /*.shrinkHuman {
@@ -164,11 +163,11 @@
 
 .whitespaceLander {
   /*display: none;*/
-  /*opacity: 0;*/
+  opacity: 1;
   width: 100vw;
   height: 100vh;
   position: fixed;
-  background-color: rgb( 255, 255, 255 );
+  background-color: rgba( 255, 255, 255, 1 );
   top: 0;
   z-index: 6;
 }
@@ -182,25 +181,32 @@
 @keyframes fadeOut {
   0% {
     opacity: 1;
+    background-color: rgba( 255, 255, 255, 1 );
   }
 
   80% {
     opacity: 1;
+    background-color: rgba( 255, 255, 255, 1 );
   }
 
   100% {
     opacity: 0;
+    background-color: rgba( 255, 255, 255, 0 );
   }
 }
   .splashWrap {
-    height: 100%;
-    margin: auto;
+    height: 100vh;
+    /*margin: auto;*/
+    left: 35vw;
     width: 30%;
+    position: absolute;
+    top: 0;
+    z-index: 7
 }
 
 .splashSVGWrap {
   height: 70%;
-  margin: 5% auto;
+  margin: auto;
   /*border: 1px solid red;*/
   position: relative;
 }

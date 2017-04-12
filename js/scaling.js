@@ -251,8 +251,12 @@ var fadeSplashPage = function(){
   $splashDiv = document.getElementsByClassName('whitespaceLander')[0];
 
   $svg = document.getElementById("human");
+  $svgWrap = document.getElementsByClassName("splashSVGWrap")[0];
   $svgText = document.querySelector('#scaling g');
   $svgScale = document.querySelector('#scaling');
+
+  $triggerButton = document.getElementById("splashButton")
+  $triggerButton.parentNode.removeChild( $triggerButton );
 
   $svgScale.classList.add('removeScale');
   $svgText.classList.add('removeScaleText');
@@ -260,10 +264,11 @@ var fadeSplashPage = function(){
   setTimeout( function(){
     // var elem = document.getElementsByClassName(".container");
     $splashDiv.parentNode.removeChild( $splashDiv );
-  }, 2900 )
+  }, 3000 )
 
   $svg.style.height = app.winScale.meterLength * 2;
-  $svg.style.bottom = 31+"%";
+  $svg.style.bottom = 20+"vh";
+    // $svg.style.top = window.innerHeight - document.getElementById("human").clientHeight;
 };
 
 
