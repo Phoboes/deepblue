@@ -170,6 +170,11 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#001e5799', e
   max-width: 8vh;
   /*border: 1px solid red;*/
 }
+
+.arrow svg path {
+  fill: rgba( 200, 200, 200, 0.3 );
+}
+
 .arrow:hover svg path, .arrow:active svg path {
   fill: white;
 }
