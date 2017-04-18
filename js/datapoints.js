@@ -54,7 +54,7 @@ app.data.oceanicZones = [
   app.data.facts.biology = {
     10: "Red light penetrates no deeper. Blood at this depth looks dark green.",
     115: "The height of 'Hyperion', The world's tallest redwood tree.",
-    160: "Almost no sunlight penetrates this deep.<br> Photosynthesis is no longer a viable survival strategy.<br/>Bioluminescence are the only new sources of light.",
+    160: "Almost no sunlight penetrates this deep.<br> Photosynthesis is no longer a viable survival strategy.<br/>Bioluminescence is the only new sources of light.",
     259: "The deepest known dive by an Orca.",
     // 300: "Deepest recorded dive by a Bottlenose dolphin.",
     360: "Lantern fish begin to appear. Lantern fish make up up to 65% of the deep sea fish biomass.<br/>The estimated global biomass of lanternfish is 550 - 660 million metric tonnes, several times the entire world fisheries catch.",

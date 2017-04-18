@@ -24,7 +24,7 @@ var getUniqueValues = function( arr ){
   }
   // console.log( storedArr.sort(function (a, b) {  return a - b;  }) )
   return storedArr.sort(function (a, b) {  return a - b;  });
-}
+};
 
 
 // ----------------------------------------------------
@@ -39,7 +39,7 @@ var setCounters = function(){
   $depthCount.innerHTML = ( depth ) + " m";
   // 14.57 psi increase in pressure, per 10m.
   var pressure = depth * 1.457
-  document.getElementById('pressureGauge').innerHTML = (Math.round( pressure * 10 ) / 10).toFixed(2) + " psi"
+  document.getElementById('pressureGauge').innerHTML = (Math.round( pressure * 10 ) / 10).toFixed(2) + " psi";
 };
 
 var setsideScale = function(){
@@ -63,7 +63,7 @@ var setFactoids = function(){
   for( data in app.data.facts ){
     for( factset in app.data.facts[data] ){
       var $factoid = document.createElement('div');
-      $factoid.className = "factoid";
+      $factoid.className = "factoid data";
       $factoid.innerHTML = app.data.facts[data][factset];
       // Calculate our offset from the top based on the meter value provided to our data points.
       var zonePercentFromTop = ( ( parseInt( factset ) / ( parseInt( $seascape.style.height ) / app.winScale.meterLength ) ) * 100  ) / 100 * parseInt( $seascape.style.height );
@@ -80,7 +80,7 @@ var setZones = function(){
   app.data.oceanicZones.forEach( function( zone ){
     var $zone = document.createElement('div');
 
-    $zone.className = "zone";
+    $zone.className = "zone data";
     $zone.innerHTML = zone.name;
     zonePercentFromTop = ( ( zone.start / ( parseInt( $seascape.style.height ) / app.winScale.meterLength ) ) * 100  ) / 100 * parseInt( $seascape.style.height );
     // console.log( zonePercentFromTop );
@@ -93,6 +93,12 @@ var setZones = function(){
 
 // Mass function calls, to save me having to write out this cluster for every window change event.
 
+var scaleHuman = function(){
+  var $svg = document.getElementById("human")
+  $svg.style.height = app.winScale.meterLength * 2;
+  $svg.style.bottom = 20+"vh";
+};
+
 var setScales = function(){
   app.data.scrollPoints = [];
   setsideScale();
@@ -100,37 +106,38 @@ var setScales = function(){
   setFactoids();
   setZones();
   setCounters();
-  app.data.scrollPoints = getUniqueValues( app.data.scrollPoints );
-  setPoints( app.data.scrollPoints );
-  spacePoints();
+  // debugger
+  app.data.sortedScrollPoints = getUniqueValues( app.data.scrollPoints );
+  // setPoints( app.data.sortedScrollPoints );
+  // spacePoints();
 };
 
-var setPoints = function( arr ){
-  removeElementsByClass( 'point' );
-  var $pointWrap = document.getElementById( 'pointWrap' );
-  for (var i = arr.length - 1; i >= 0; i--) {
-    var $point = document.createElement('div');
-    $point.className = "point";
-    $pointWrap.appendChild( $point );
-  }
+// var setPoints = function( arr ){
+//   removeElementsByClass( 'point' );
+//   var $pointWrap = document.getElementById( 'pointWrap' );
+//   for (var i = arr.length - 1; i >= 0; i--) {
+//     var $point = document.createElement('div');
+//     $point.className = "point";
+//     $pointWrap.appendChild( $point );
+//   }
 
-};
+// };
 
-var spacePoints = function(){
-  var $pointWrap = document.getElementById('pointWrap');
-  var $wrapHeight = parseInt( window.getComputedStyle( document.getElementById('pointWrap') ).height );
-  var $wrapWidth = parseInt( window.getComputedStyle( document.getElementById('pointWrap') ).width );
-  var navPoints = document.getElementsByClassName('point')
-  var pointCount = navPoints.length;
-  var evenSpacing = $wrapHeight / ( pointCount + 1 );
-  var pointSize = $wrapWidth / 30;
-  for (var i = navPoints.length - 1; i >= 0; i--) {
-    navPoints[i].style.height = pointSize + 'px';
-    navPoints[i].style.width = pointSize + 'px';
-    navPoints[i].style.marginTop = (evenSpacing * i + evenSpacing ) + 'px';
-    navPoints[i].style.marginLeft = ( ( $wrapWidth / 2 ) - pointSize ) + 'px';
-  };
-};
+// var spacePoints = function(){
+//   var $pointWrap = document.getElementById('pointWrap');
+//   var $wrapHeight = parseInt( window.getComputedStyle( document.getElementById('pointWrap') ).height );
+//   var $wrapWidth = parseInt( window.getComputedStyle( document.getElementById('pointWrap') ).width );
+//   var navPoints = document.getElementsByClassName('point')
+//   var pointCount = navPoints.length;
+//   var evenSpacing = $wrapHeight / ( pointCount + 1 );
+//   var pointSize = $wrapWidth / 30;
+//   for (var i = navPoints.length - 1; i >= 0; i--) {
+//     navPoints[i].style.height = pointSize + 'px';
+//     navPoints[i].style.width = pointSize + 'px';
+//     navPoints[i].style.marginTop = (evenSpacing * i + evenSpacing ) + 'px';
+//     navPoints[i].style.marginLeft = ( ( $wrapWidth / 2 ) - pointSize ) + 'px';
+//   };
+// };
 
 // first add raf shim
 // http://www.paulirish.com/2011/requestanimationframe-for-smart-animating/
@@ -201,20 +208,20 @@ scrollToY(0, 1500, 'easeInOutQuint');
 
 var clickNav = function(){
   windowPos = window.scrollY;
-  var dataPointLength = app.data.scrollPoints.length;
+  var dataPointLength = app.data.sortedScrollPoints.length;
   var targetPoint = 0;
   if( this.id === 'up' ){
     for (var i = dataPointLength - 1; i >= 0; i--) {
       // If we're sitting between data points, navigate to the nearest point with a lower Y index and stop the loop.
-      var roundedPos = Math.round( app.data.scrollPoints[i] );
+      var roundedPos = Math.round( app.data.sortedScrollPoints[i] );
       if( windowPos > roundedPos ){
         targetPoint = roundedPos;
         // window.scrollTo( 0, targetPoint );
         scrollToY( roundedPos );
         break;
         // If we're already on a point, navigate to the one before.
-      } else if ( windowPos === Math.round( app.data.scrollPoints[i] ) ){
-        targetPoint = app.data.scrollPoints[ i - 1 ];
+      } else if ( windowPos === Math.round( app.data.sortedScrollPoints[i] ) ){
+        targetPoint = app.data.sortedScrollPoints[ i - 1 ];
         // window.scroll( 0, targetPoint );
         // controller.scrollTo( { y: targetPoint } );
         scrollToY( targetPoint );
@@ -224,38 +231,71 @@ var clickNav = function(){
     // console.log('up')
     // scrollRamp( windowPos, targetPoint );
   } else {
-    for (var i = 0; i <= dataPointLength - 1; i++) {
+    for ( var i = 0; i <= dataPointLength - 1; i++ ) {
       // console.log(i)
-      var roundedPos = Math.round( app.data.scrollPoints[i] );
+      var roundedPos = Math.round( app.data.sortedScrollPoints[i] );
       // debugger
-      if( windowPos < Math.round( app.data.scrollPoints[i] ) ){
+      if( windowPos < Math.round( app.data.sortedScrollPoints[i] ) ){
         // debugger
         // window.scrollTo( 0, roundedPos );
         scrollToY( roundedPos );
-        break
-      } else if ( windowPos === Math.round( app.data.scrollPoints[i] ) && app.data.scrollPoints[i] < app.data.scrollPoints[i].length ){
+        break;
+      } else if ( windowPos === Math.round( app.data.sortedScrollPoints[i] ) && app.data.sortedScrollPoints[i] < app.data.sortedScrollPoints[i].length ){
         // debugger
-        targetPoint = app.data.scrollPoints[ i + 1 ];
+        targetPoint = app.data.sortedScrollPoints[ i + 1 ];
         // window.scrollTo( 0, targetPoint );
         controller.scrollTo( { y: targetPoint } );
         break;
       }
-    };
+    }
   }
 };
 
 // --------------------End Setters---------------------
 // ----------------------------------------------------
+var currentData;
+
+var highlight = function( pos ){
+  for( var i = 0; app.data.scrollPoints.length > i; i++ ){
+    var range = 20;
+
+    if( pos <= app.data.scrollPoints[i] + range && pos >= app.data.scrollPoints[i] - range ){
+      currentData = document.getElementsByClassName("data")[i];
+      currentData.classList.add("highlightText");
+      return;
+    } else {
+      // debugger
+      if( currentData.classList.contains("highlightText") ){
+        currentData.classList.remove("highlightText");
+      }
+    }
+  }
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 var fadeSplashPage = function(){
-  $splashDiv = document.getElementsByClassName('whitespaceLander')[0];
+  var $splashDiv = document.getElementsByClassName('whitespaceLander')[0];
 
-  $svg = document.getElementById("human");
-  $svgWrap = document.getElementsByClassName("splashSVGWrap")[0];
-  $svgText = document.querySelector('#scaling g');
-  $svgScale = document.querySelector('#scaling');
+  var $svg = document.getElementById("human");
+  var $svgWrap = document.getElementsByClassName("splashSVGWrap")[0];
+  var $svgText = document.querySelector('#scaling g');
+  var $svgScale = document.querySelector('#scaling');
 
-  $triggerButton = document.getElementById("splashButton")
+  var $triggerButton = document.getElementById("splashButton")
   $triggerButton.parentNode.removeChild( $triggerButton );
 
   $svgScale.classList.add('removeScale');
@@ -264,15 +304,22 @@ var fadeSplashPage = function(){
   setTimeout( function(){
     // var elem = document.getElementsByClassName(".container");
     $splashDiv.parentNode.removeChild( $splashDiv );
-  }, 3000 )
+    $svg.style.transition = "bottom 0s";
+  }, 3000 );
 
-  $svg.style.height = app.winScale.meterLength * 2;
-  $svg.style.bottom = 20+"vh";
+
+  // Default our highlighted state to our first data point.
+  currentData = document.getElementsByClassName("data")[0];
+  highlight( window.scrollY );
+
+
+  scaleHuman();
     // $svg.style.top = window.innerHeight - document.getElementById("human").clientHeight;
 };
 
 
 window.onload = function( e ){
+  highlight( window.scrollY );
   $seascape = document.getElementById('seascape');
   $seascapeGradient = document.getElementById('darkGradient');
   setScales();
@@ -289,8 +336,12 @@ var $arrows = document.getElementsByClassName('arrow');
 
 window.onresize = function(){
   setScales();
+  scaleHuman();
 };
 
-window.onscroll = function(){
+window.onscroll = function(e){
+  // debugger
   setCounters();
+  highlight( window.scrollY );
+
 };
