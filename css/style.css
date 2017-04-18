@@ -204,14 +204,18 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#001e5799', e
 /*------------------TextHighlights-------------------------*/
 
 .data {
-  border-top: 1px solid rgba(180, 180, 180, 0.2);
-  color: rgba(180, 180, 180, 0.2);
+  border-top: 1px solid rgba(220, 220, 220, 0.2);
+  color: rgba(220, 220, 220, 0.2);
+  -webkit-transition: color 0.2s, border-top 0.2s;
+  -o-transition: color 0.2s, border-top 0.2s;
+  transition: color 0.2s, border-top 0.2s;
 }
 
-.highlightText {
+/*.highlightText {
     border-top: 1px solid rgba(200, 200, 200, 0.8);
     color: rgba(200, 200, 200, 0.8);
     -webkit-transition: color 0.8s, border-top 0.8s;
     -o-transition: color 0.8s, border-top 0.8s;
     transition: color 0.8s, border-top 0.8s;
 }
+*/

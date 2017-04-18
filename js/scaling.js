@@ -257,16 +257,16 @@ var currentData;
 
 var highlight = function( pos ){
   for( var i = 0; app.data.scrollPoints.length > i; i++ ){
-    var range = 20;
+    var range = 30;
 
     if( pos <= app.data.scrollPoints[i] + range && pos >= app.data.scrollPoints[i] - range ){
       currentData = document.getElementsByClassName("data")[i];
-      currentData.classList.add("highlightText");
+      currentData.style.color = "rgba(220, 220, 220, 0.8)";
       return;
     } else {
       // debugger
-      if( currentData.classList.contains("highlightText") ){
-        currentData.classList.remove("highlightText");
+      if( currentData.style.color === "rgba(220, 220, 220, 0.8)" ){
+        currentData.style.color = "rgba(220, 220, 220, 0.2)";
       }
     }
   }
