@@ -8,3 +8,4 @@ Todo:
 
 Create a bunch of SVGs to animate out at certain depths (i.e the eiffel tower inverted for 301 meters).
 Create a reuseable animation splashpage function for each of these.
+Create random bioluminescence for twilight zones.
