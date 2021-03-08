@@ -121,38 +121,8 @@ var setScales = function () {
   setFactoids();
   setZones();
   setCounters();
-  // debugger
   app.data.sortedScrollPoints = getUniqueValues(app.data.scrollPoints);
-  // setPoints( app.data.sortedScrollPoints );
-  // spacePoints();
 };
-
-// var setPoints = function( arr ){
-//   removeElementsByClass( 'point' );
-//   var $pointWrap = document.getElementById( 'pointWrap' );
-//   for (var i = arr.length - 1; i >= 0; i--) {
-//     var $point = document.createElement('div');
-//     $point.className = "point";
-//     $pointWrap.appendChild( $point );
-//   }
-
-// };
-
-// var spacePoints = function(){
-//   var $pointWrap = document.getElementById('pointWrap');
-//   var $wrapHeight = parseInt( window.getComputedStyle( document.getElementById('pointWrap') ).height );
-//   var $wrapWidth = parseInt( window.getComputedStyle( document.getElementById('pointWrap') ).width );
-//   var navPoints = document.getElementsByClassName('point')
-//   var pointCount = navPoints.length;
-//   var evenSpacing = $wrapHeight / ( pointCount + 1 );
-//   var pointSize = $wrapWidth / 30;
-//   for (var i = navPoints.length - 1; i >= 0; i--) {
-//     navPoints[i].style.height = pointSize + 'px';
-//     navPoints[i].style.width = pointSize + 'px';
-//     navPoints[i].style.marginTop = (evenSpacing * i + evenSpacing ) + 'px';
-//     navPoints[i].style.marginLeft = ( ( $wrapWidth / 2 ) - pointSize ) + 'px';
-//   };
-// };
 
 // first add raf shim
 // http://www.paulirish.com/2011/requestanimationframe-for-smart-animating/
@@ -241,29 +211,21 @@ var clickNav = function () {
         // If we're already on a point, navigate to the one before.
       } else if (windowPos === Math.round(app.data.sortedScrollPoints[i])) {
         targetPoint = app.data.sortedScrollPoints[i - 1];
-        // window.scroll( 0, targetPoint );
-        // controller.scrollTo( { y: targetPoint } );
         scrollToY(targetPoint);
         break;
       }
     }
-    // scrollRamp( windowPos, targetPoint );
   } else {
     for (var i = 0; i <= dataPointLength - 1; i++) {
       var roundedPos = Math.round(app.data.sortedScrollPoints[i]);
-      // debugger
       if (windowPos < Math.round(app.data.sortedScrollPoints[i])) {
-        // debugger
-        // window.scrollTo( 0, roundedPos );
         scrollToY(roundedPos);
         break;
       } else if (
         windowPos === Math.round(app.data.sortedScrollPoints[i]) &&
         app.data.sortedScrollPoints[i] < app.data.sortedScrollPoints[i].length
       ) {
-        // debugger
         targetPoint = app.data.sortedScrollPoints[i + 1];
-        // window.scrollTo( 0, targetPoint );
         controller.scrollTo({ y: targetPoint });
         break;
       }
@@ -291,7 +253,6 @@ var highlight = function (pos) {
       currentData.style.color = "rgba(220, 220, 220, 0.8)";
       return;
     } else {
-      // debugger
       if (currentData.style.color === "rgba(220, 220, 220, 0.8)") {
         currentData.style.color = "rgba(220, 220, 220, 0.2)";
       }
@@ -331,7 +292,6 @@ var fadeSplashPage = function () {
   highlight(window.scrollY);
 
   scaleHuman();
-  // $svg.style.top = window.innerHeight - document.getElementById("human").clientHeight;
 };
 
 window.onload = function (e) {
@@ -350,16 +310,15 @@ window.onload = function (e) {
 };
 
 window.onresize = function () {
-  if (window.innerWidth > 600) {
-    setScales();
-  }
+  // if (window.innerWidth > 600) {
+  setScales();
+  // }
   if (clicked) {
     scaleHuman();
   }
 };
 
 window.onscroll = function (e) {
-  // debugger
   setCounters();
   highlight(window.scrollY);
 };
