@@ -40,9 +40,9 @@ app.data.oceanicZones = [
 app.data.facts = {};
 
 app.data.facts.humanAchievement = {
-  20: "For every 10 meters you descend, the volume of air in your body is halved. <br>Lungs compress to 1/3 their normal size.<br>Around now, a human with no equipment reaches neutral or negative bouyancy.",
+  10: "For every 10 meters you descend, the volume of air in your body is halved. <br>Lungs compress to 1/3 their normal size.<br/><br/>Due to this compression, most people will have reached neutral buoyancy. Any deeper and you will begin to sink, rather than float in the water.",
   40: "The depth limit for recreational scuba divers.",
-  102: "The deepest freedive without using fins.",
+  102: "The deepest freedive without using fins. At this depth, the pressure will have compressed each lung down to the size of an orange.",
   332: "The deepest SCUBA dive ever achieved.",
   730: "Estimated maximum dive depth of Seawolf class submarines.",
   // Check me.
@@ -52,7 +52,7 @@ app.data.facts.humanAchievement = {
 };
 
 app.data.facts.biology = {
-  10: "Red light is already barely visible. <br/>Blood at this depth looks dark green. As we go deeper, the last of the red will be filtered out of the visible spectrum. This is why a lot of sea life is red. They appear effectively black at depth.",
+  20: "Red light is already barely visible. <br/>Blood at this depth looks dark green. As we go deeper, the last of the red will be filtered out of the visible spectrum. This is why a lot of sea life is red. <br/>At depth, they are effectively black.",
   115: "The height of 'Hyperion', The world's tallest redwood tree.",
   160: "Almost no sunlight penetrates this deep.<br> Photosynthesis is no longer a viable survival strategy.<br/>Bioluminescence is the only source of light.",
   259: "The deepest known dive by an Orca.",
@@ -96,22 +96,3 @@ app.data.facts.architecture = {
   4900: "The deepest successful salvage operation - retrieving the black box of South African Airways Flight 295.",
   5762: "The deepest known wreck, The Rio Grande. Just over half way down now.",
 };
-
-// for( data in app.data.facts ){
-//   console.warn( data )
-//   for( factset in app.data.facts[data] ){
-//     // debugger
-//     console.log( factset + ": " + app.data.facts[data][factset] );
-//     console.log('')
-//
-//     var $factoid = document.createElement('div');
-//     $factoid.className = "factoid";
-//     $factoid.innerHTML = app.data.facts[data][factset];
-//
-//     zonePercentFromTop = ( ( parseInt( factset ) / ( parseInt( $seascape.style.height ) / app.winScale.meterLength ) ) * 100  ) / 100 * parseInt( $seascape.style.height );
-//     console.log( zonePercentFromTop );
-//     $factoid.style.marginTop = parseInt( zonePercentFromTop ) + 'px';
-//     $seascape.appendChild( $factoid );
-//
-//   }
-// };

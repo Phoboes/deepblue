@@ -213,12 +213,12 @@
 
 #splashButton {
   border: 1px solid rgba( 220, 220, 220, 1 );
-  width: 100%;
+  width: 30%;
   /*height: 10%;*/
   margin: 10% auto;
   text-align: center;
   font-size: 3em;
-  border-radius: 1em;
+  border-radius: 5px;
 }
 
 #splashButton:hover {
