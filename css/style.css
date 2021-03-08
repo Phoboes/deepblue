@@ -208,6 +208,42 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#001e5799', e
 }
 */
 
+@media only screen and (min-width: 800px) {
+
+.intMarker #depthGauge {
+
+    font-size: 0.6em;
+
+  }
+
+  .intMarker #pressureGauge {
+
+    font-size: 0.4em;
+
+  } 
+
+.zone {
+
+  font-size: 30px;
+
+}
+
+.zone h4 {
+
+  font-size: 15px;
+
+}
+
+.factoid {
+
+  font-size: 20px;
+
+}
+
+
+
+}
+
 @media only screen and (max-width: 600px) {
 .intMarker #depthGauge {
     font-size: 0.5em;
@@ -238,3 +274,4 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#001e5799', e
 
 
 }
+

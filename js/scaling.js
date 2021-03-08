@@ -344,7 +344,9 @@ window.onload = function (e) {
 };
 
 window.onresize = function () {
-  setScales();
+  if (window.innerWidth > 600) {
+    setScales();
+  }
   if (clicked) {
     scaleHuman();
   }
