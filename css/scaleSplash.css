@@ -213,8 +213,7 @@
 
 #splashButton {
   border: 1px solid rgba( 220, 220, 220, 1 );
-  /* width: 30%; */
-  /*height: 10%;*/
+  max-width: 120px;
   margin: 10% auto;
   text-align: center;
   font-size: 3em;

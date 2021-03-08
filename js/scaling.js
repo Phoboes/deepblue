@@ -22,7 +22,6 @@ var getUniqueValues = function (arr) {
       storedArr.push(arr[i]);
     }
   }
-  // console.log( storedArr.sort(function (a, b) {  return a - b;  }) )
   return storedArr.sort(function (a, b) {
     return a - b;
   });
@@ -77,7 +76,6 @@ var setFactoids = function () {
           100) /
           100) *
         parseInt($seascape.style.height);
-      // console.log( zonePercentFromTop );
       $factoid.style.marginTop = parseInt(zonePercentFromTop) + "px";
       app.data.scrollPoints.push(zonePercentFromTop);
       $seascapeGradient.appendChild($factoid);
@@ -101,7 +99,6 @@ var setZones = function () {
         100) /
         100) *
       parseInt($seascape.style.height);
-    // console.log( zonePercentFromTop );
 
     $zone.style.marginTop = parseInt(zonePercentFromTop) + "px";
     app.data.scrollPoints.push(zonePercentFromTop);
@@ -217,7 +214,6 @@ function scrollToY(scrollTargetY, speed, easing) {
 
       window.scrollTo(0, scrollY + (scrollTargetY - scrollY) * t);
     } else {
-      console.log("scroll done");
       window.scrollTo(0, scrollTargetY);
     }
   }
@@ -251,11 +247,9 @@ var clickNav = function () {
         break;
       }
     }
-    // console.log('up')
     // scrollRamp( windowPos, targetPoint );
   } else {
     for (var i = 0; i <= dataPointLength - 1; i++) {
-      // console.log(i)
       var roundedPos = Math.round(app.data.sortedScrollPoints[i]);
       // debugger
       if (windowPos < Math.round(app.data.sortedScrollPoints[i])) {
@@ -279,11 +273,11 @@ var clickNav = function () {
 
 // --------------------End Setters---------------------
 // ----------------------------------------------------
-var currentData;
+var currentData = null;
 
 var highlight = function (pos) {
   for (var i = 0; app.data.scrollPoints.length > i; i++) {
-    var range = 100;
+    var range = 150;
 
     if (
       pos <= app.data.scrollPoints[i] + range &&

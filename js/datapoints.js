@@ -52,7 +52,7 @@ app.data.facts.humanAchievement = {
 };
 
 app.data.facts.biology = {
-  20: "Red light is already barely visible. <br/>Blood at this depth looks dark green. As we go deeper, the last of the red will be filtered out of the visible spectrum. This is why a lot of sea life is red. <br/>At depth, they are effectively black.",
+  20: "Red light is already barely visible. <br/>Blood at this depth looks dark green.",
   115: "The height of 'Hyperion', The world's tallest redwood tree.",
   160: "Almost no sunlight penetrates this deep.<br> Photosynthesis is no longer a viable survival strategy.<br/>Bioluminescence is the only source of light.",
   259: "The deepest known dive by an Orca.",
@@ -87,12 +87,12 @@ app.data.facts.geography = {
 };
 
 app.data.facts.architecture = {
-  108: "The final resting depth of the Kursk.",
-  301: "The height of Eiffel tower",
+  108: "The final resting depth of the Kursk submarine.",
+  301: "We are now as deep as the Eiffel Tower is tall.",
   541: "The height of the One World Trade Center.",
   828: "The tallest building on earth, the Burj Khalifa.",
-  2450: "The operating depth of The Perdido, the deepest floating oil rig on Earth.",
-  3810: "The depth at which the Titanic rests.",
-  4900: "The deepest successful salvage operation - retrieving the black box of South African Airways Flight 295.",
+  2450: "The operating depth of The Perdido, the deepest floating oil rig.",
+  3810: "The depth of the wreck of the Titanic.",
+  4900: "The deepest successful salvage operation -- retrieving the black box of South African Airways Flight 295.",
   5762: "The deepest known wreck, The Rio Grande. Just over half way down now.",
 };
