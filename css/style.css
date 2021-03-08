@@ -11,6 +11,7 @@
 }
 
 body {
+  overflow: hidden;
 }
 
 .container {
@@ -107,7 +108,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#001e5799', e
   text-align: center;
   font-size: 15px;
   height: 60px;
-  z-index: 5;
+  /* z-index: 5; */
 }
 
 .factoid {

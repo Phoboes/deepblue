@@ -301,6 +301,11 @@ var highlight = function (pos) {
 
 var fadeSplashPage = function () {
   clicked = true;
+  setTimeout(() => {
+    document.body.style.overflow = "scroll";
+    document.body.style.overflowX = "hidden";
+  }, 2100);
+
   var $splashDiv = document.getElementsByClassName("whitespaceLander")[0];
 
   var $svg = document.getElementById("human");
