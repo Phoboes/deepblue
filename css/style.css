@@ -113,7 +113,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#001e5799', e
 
 .factoid {
   color: rgba(180, 180, 180, 0.2);
-  font-size: 15px;
+  font-size: 12px;
   font-weight: bold;
   border-top: 1px solid rgba(180, 180, 180, 0.2);
   position: absolute;
