@@ -273,7 +273,11 @@ var clickNav = function () {
 
 // --------------------End Setters---------------------
 // ----------------------------------------------------
-var currentData = null;
+var currentData = {
+  style: {
+    color: null,
+  },
+};
 
 var highlight = function (pos) {
   for (var i = 0; app.data.scrollPoints.length > i; i++) {
