@@ -3,7 +3,7 @@ app.winScale = {};
 
 app.winScale.$winHeight;
 app.winScale.$winWidth;
-
+let clicked = false;
 // ----------------------------------------------------
 //    Used to kill off duplicate elements on rescale.
 // ----------------------------------------------------
@@ -302,6 +302,7 @@ var highlight = function (pos) {
 };
 
 var fadeSplashPage = function () {
+  clicked = true;
   var $splashDiv = document.getElementsByClassName("whitespaceLander")[0];
 
   var $svg = document.getElementById("human");
@@ -346,7 +347,9 @@ window.onload = function (e) {
 
 window.onresize = function () {
   setScales();
-  scaleHuman();
+  if (clicked) {
+    scaleHuman();
+  }
 };
 
 window.onscroll = function (e) {
