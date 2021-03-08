@@ -133,9 +133,15 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#001e5799', e
   right: 0;
   max-width: 50vw;
   padding: 0.5em;
+  z-index: 999;
 }
 
-
+.data:hover,
+.data:active,
+.data:focus {
+  color: rgba(220, 220, 220, 0.8) !important;
+  cursor: default;
+}
 
 .pointContain {
   /*height: 100%;*/

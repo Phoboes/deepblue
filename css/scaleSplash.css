@@ -37,11 +37,11 @@
       fill: rgba( 0, 0, 0, 0 );
     }
     40% {
-      stroke-dashoffset: 3500
+      stroke-dashoffset: 3500;
       fill: rgba( 0, 0, 0, 0 );
     }
     60% {
-      stroke-dashoffset: 2500
+      stroke-dashoffset: 2500;
       fill: rgba( 0, 0, 0, 0 );
     }
     80% {
@@ -85,7 +85,7 @@
   }
 
   50% {
-    stroke-dashoffset: 750
+    stroke-dashoffset: 750;
   }
 
   100% {
@@ -106,7 +106,7 @@
   }
 
   50% {
-    stroke-dashoffset: 750
+    stroke-dashoffset: 750;
   }
 
   100% {
@@ -130,7 +130,7 @@
   }
 
   50% {
-    stroke-dashoffset: 200
+    stroke-dashoffset: 200;
   }
 
   100% {
@@ -151,7 +151,7 @@
   }
 
   50% {
-    stroke-dashoffset: 200
+    stroke-dashoffset: 200;
   }
 
   100% {
@@ -201,7 +201,7 @@
     width: 30%;
     position: absolute;
     top: 0;
-    z-index: 7
+    z-index: 7;
 }
 
 .splashSVGWrap {
