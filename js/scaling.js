@@ -305,6 +305,7 @@ var fadeSplashPage = function () {
     document.body.style.overflow = "scroll";
     document.body.style.overflowX = "hidden";
   }, 2100);
+  setScales();
 
   var $splashDiv = document.getElementsByClassName("whitespaceLander")[0];
 
