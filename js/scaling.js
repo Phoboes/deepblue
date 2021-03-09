@@ -58,7 +58,7 @@ var setsideScale = function () {
 var setseascapeScale = function () {
   app.winScale.$winHeight = window.innerHeight;
   // Set the window ocean depth based on our calculated value of a meter.
-  $seascape.style.height = app.winScale.meterLength * 11050 + "px";
+  $seascape.style.height = app.winScale.meterLength * 11005 + "px";
 };
 
 var setFactoids = function () {
@@ -241,6 +241,25 @@ var currentData = {
   },
 };
 
+var lastScrollTop = window.pageYOffset;
+var lastData = document.getElementsByClassName("data");
+
+var scrollLimit = function (e) {
+  var st = window.pageYOffset || document.documentElement.scrollTop; // Credits: "https://github.com/qeremy/so/blob/master/so.dom.js#L426"
+  if (st > lastScrollTop && currentData === lastData[lastData.length - 1]) {
+    e.preventDefault();
+    console.log("Scroll down");
+    document.body.style.overflow = "hidden";
+    setTimeout(() => {
+      document.body.style.overflow = "scroll";
+    }, 100);
+  } else {
+    document.body.style.overflow = "scroll";
+    console.log("Scroll up");
+  }
+  lastScrollTop = st <= 0 ? 0 : st; // For Mobile or negative scrolling
+};
+
 var highlight = function (pos) {
   for (var i = 0; app.data.scrollPoints.length > i; i++) {
     var range = 150;
@@ -264,7 +283,7 @@ var fadeSplashPage = function () {
   clicked = true;
   setTimeout(() => {
     document.body.style.overflow = "scroll";
-    document.body.style.overflowX = "hidden";
+    document.body.style["overflow-x"] = "hidden";
   }, 2100);
   setScales();
 
@@ -308,6 +327,10 @@ window.onload = function (e) {
   var $splashButton = document.getElementById("splashButton");
   $splashButton.onclick = fadeSplashPage;
 };
+
+// document.onscroll = (e) => {
+//   scrollLimit(e);
+// };
 
 window.onresize = function () {
   // if (window.innerWidth > 600) {

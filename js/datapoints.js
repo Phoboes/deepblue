@@ -45,8 +45,6 @@ app.data.facts.humanAchievement = {
   102: "The deepest freedive without using fins. At this depth, the pressure will have compressed each lung down to the size of an orange.",
   332: "The deepest SCUBA dive ever achieved.",
   730: "Estimated maximum dive depth of Seawolf class submarines.",
-  // Check me.
-  // 4000: "The deepest capacity at which Trawlers can operate.",
   10898: "The depth James Cameron reached in 2012.",
   10911: "The deepest diving point of the Trieste (1960) -- the deepest humans have ever been.",
 };
@@ -56,7 +54,6 @@ app.data.facts.biology = {
   115: "The height of 'Hyperion', The world's tallest redwood tree.",
   160: "Almost no sunlight penetrates this deep.<br> Photosynthesis is no longer a viable survival strategy.<br/>Bioluminescence is the only source of light.",
   259: "The deepest known dive by an Orca.",
-  // 300: "Deepest recorded dive by a Bottlenose dolphin.",
   360: "Lantern fish begin to appear. Lantern fish make up up to 65% of the deep sea fish biomass.<br/>The estimated global biomass of lanternfish is 550 - 660 million metric tonnes, several times the entire world's annual fisheries catches combined.",
   400: "During World War II, submariners were puzzled by shifting sea floors. During the day sonar would indicate depths for 300-500  meters, but during the evenings, it appeared to rise.<br/>This turned out to be sonar bouncing off of the swim bladders of millions of fish which, during daylight, keep to the relative safety of the depths, rising to feed under the cover of night.",
   506: "The deepest recorded dive of a Blue Whale -- The largest animal to have ever existed.",
@@ -71,7 +68,6 @@ app.data.facts.biology = {
   4500: "Deep in the bathypelagic zone, the pressures are crushing, and the temperatures are very low.<br/>Almost all fish at this depth have very slow metabolisms and hunt purely by ambush to minimise energy loss. <br/>Due to the crushing pressure, most fish at these depths entirely lack swimbladders.",
   6000: "At this depth, due to pressure, water needs to be nearly 500 degrees celcius (932°F) to reach boiling point.",
   7000: "The lowest ranges of the Dumbo Octopus, the deepest dwelling cephalopod.",
-  //revise
   8143: "The lowest recorded depth of any living fish.",
   8200: "The deepest theoretical depth at which any fish could survive. Beyond this point, pressure starts to cause issues on a cellular level.",
 };
